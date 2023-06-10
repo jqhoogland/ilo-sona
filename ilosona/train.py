@@ -7,7 +7,6 @@ from torch.utils.data import DataLoader
 from ilosona.data import TokiPonaDataset
 from ilosona.model import Decoder
 
-
 def train(model, dataset, config):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
@@ -39,6 +38,15 @@ def train(model, dataset, config):
             if i % config["log_interval"] == 0:
                 print(f"Epoch: {epoch}, Batch: {i}, Loss: {loss.item()}")
                 wandb.log({"loss": loss.item()})
+
+        # Save a checkpoint after each epoch
+        torch.save({
+            'epoch': epoch,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'scheduler_state_dict': scheduler.state_dict(),
+            'loss': loss
+        }, f'checkpoint_{epoch}.pt')
 
     wandb.finish()
 

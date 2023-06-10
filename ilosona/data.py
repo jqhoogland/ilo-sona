@@ -16,14 +16,14 @@ import os
 import torch
 from torch.utils.data import Dataset
 
-from ilosona.tokinizer import Tokinizer, TokiPonaTokenizer
+from ilosona.tokinizer import Tokinizer
 
 
 class TokiPonaDataset(Dataset):
     def __init__(self, corpus_dir, max_length=1024):
         self.corpus_dir = corpus_dir
         self.max_length = max_length
-        self.tokenizer = TokiPonaTokenizer()
+        self.tokenizer = Tokinizer()
         self.samples = self.get_samples()
 
     def get_samples(self):
