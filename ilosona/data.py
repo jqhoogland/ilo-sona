@@ -11,32 +11,43 @@ Sources:
 - https://lipumonsuta.neocities.org/
 
 """
+import os
+
 import torch
 from torch.utils.data import Dataset
-from ilosona.tokinizer import Tokinizer
-import os
+
+from ilosona.tokinizer import Tokinizer, TokiPonaTokenizer
+
 
 class TokiPonaDataset(Dataset):
     def __init__(self, corpus_dir, max_length=1024):
         self.corpus_dir = corpus_dir
-        self.tokenizer = Tokinizer()
-        self.file_list = self.get_file_list()
         self.max_length = max_length
+        self.tokenizer = TokiPonaTokenizer()
+        self.samples = self.get_samples()
 
-    def get_file_list(self):
-        file_list = []
+    def get_samples(self):
+        samples = []
         for root, dirs, files in os.walk(self.corpus_dir):
             for file in files:
-                file_list.append(os.path.join(root, file))
-        return file_list
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r') as f:
+                    text = f.read()
+                tokens = self.tokenizer.encode_plus(text, truncation=False, return_tensors='pt')['input_ids'].squeeze()
+                for i in range(0, len(tokens), self.max_length):
+                    samples.append(tokens[i:i+self.max_length])
+        return samples
 
     def __len__(self):
-        return len(self.file_list)
+        return len(self.samples)
 
     def __getitem__(self, idx):
-        file_path = self.file_list[idx]
-        with open(file_path, 'r') as f:
-            text = f.read()
-        tokens = self.tokenizer.encode_plus(
-            text, truncation=True, max_length=self.max_length, padding='max_length', return_tensors='pt')
-        return tokens['input_ids'].squeeze(), tokens['attention_mask'].squeeze()
+        sample = self.samples[idx]
+        sample_length = len(sample)
+        if sample_length < self.max_length:
+            padding_length = self.max_length - sample_length
+            sample = torch.cat([sample, torch.zeros(padding_length, dtype=torch.long)], dim=0)
+            mask = torch.cat([torch.ones(sample_length, dtype=torch.long), torch.zeros(padding_length, dtype=torch.long)], dim=0)
+        else:
+            mask = torch.ones(self.max_length, dtype=torch.long)
+        return sample, mask
