@@ -9,6 +9,8 @@ Great! Here's a draft README for the `ilo-pona` repository:
 ## Overview
 `ilo-pona` is an experimental project dedicated to creating a transformer model tailored to understand and generate text in Toki Pona, a minimalistic constructed language. The core motivation behind this project lies in the unique characteristics of Toki Pona - its simple semantics (one word per token) and severely limited vocabulary size. These features make it an excellent toy model for investigating training dynamics of large language models (LLMs) and conducting mechanistic interpretability research.
 
+The corpus is built on top of the corpus compiled by [davidar](https://github.com/davidar/nltk-tp/).
+
 ## Project Maintainers
 - Jesse Hoogland [@jqhoogland](https://github.com/jqhoogland)
 - Bilal Chughtai [@bilal-chughtai](https://github.com/bilal-chughtai)
