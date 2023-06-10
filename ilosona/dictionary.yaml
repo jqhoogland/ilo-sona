@@ -1,0 +1,606 @@
+# Source: https://devurandom.xyz/tokipona/dictionary
+
+- a:
+    particle: emotional interjection, emphasis or confirmation
+
+- akesi:
+    noun: lizard, reptile
+    notes: The word “akesi” used to also mean “‘non-cute’ animal”, but the second official toki pona book has removed this meaning.
+
+- ala:
+    noun: nothing
+    adjective: not, no, empty
+    number: zero
+
+- alasa:
+    verb: 
+      conventional: to hunt, to gather
+      unconventional: to search, to look for
+    pre-verb: to try (doing something)
+
+- ale/ali:
+    noun: everything, universe
+    adjective: every, all, abundant
+    number: all/infinite (simple system), 100 (complex system)
+
+- anpa:
+    noun:
+      old/non-pu: lower part
+    adjective: bowing down, downward, lowly, humble, dependent
+    verb:
+      w/o obj: to bow down
+      w/ obj: to conquer, to defeat
+
+- ante:
+    noun: difference, change, (unconventional) version
+    adjective: different, other, changed
+    verb: to change
+
+- anu:
+    particle: or
+
+- awen:
+    noun: 
+      unconventional: stability, safety, wait
+    adjective: kept, safe, enduring, resilient, waiting, staying
+    verb: keep, stay, endure, protect
+    pre-verb: continue (doing something)
+
+- e:
+    particle: specifies an object
+
+- en:
+    particle: and (combines subjects)
+
+- epiku (nimi ku suli):
+    adjective: epic, awesome
+    notes: This word is typically used as a form of slang, and has also found common use in “ma pona pi toki pona”’s “acro” games, as the only other non-particle word starting with “e” is “esun”.
+
+- esun:
+    noun: trade, transaction, exchange
+    adjective: trade/exchange-related, commercial
+    verb: to trade, to exchange
+
+- ijo:
+    noun: thing, object, matter
+    adjective: material, physical
+
+- ike:
+    noun: evil
+    adjective: bad, evil, complex, unnecessary
+    verb: 
+      unconventional: make smth worse
+- ilo:
+    noun: tool, machine, device
+    adjective: useful, (unconventional) electronic, metallic
+
+- insa:
+    noun: insides, contents, center, stomach
+    adjective: central, inside, between
+
+- jaki:
+    noun: dirt, waste
+    adjective: dirty, disgusting, toxic, unclean, unsanitary
+    verb: to make something dirty
+
+- jan:
+    noun: person, people, humanity, somebody
+    adjective: human-like, personal
+
+- jasima (nimi ku suli):
+    noun: mirror, reflection, echo
+    adjective: opposite
+    verb: to reflect, to reverse
+
+- jelo:
+    noun: the color yellow (and its shades)
+    adjective: yellow (and its shades)
+    verb: to color smth yellow
+
+- jo:
+    noun: 
+      unconventional: possessions, property
+    verb: to have/carry/contain/hold
+
+- kala:
+    noun: fish, marine animal, sea creature
+
+- kalama:
+    noun: sound, noise
+    adjective: loud, noisy, sound-making
+    verb: to make noise, to recite, to play (an instrument)
+
+- kama:
+    noun: event, arrival
+    adjective: arriving, coming, future, summoned
+    pre-verb: to become, to be in the process of (doing smth), to manage to, to succeed in
+
+- kasi:
+    noun: plant, grass, herb, leaf
+
+- ken:
+    noun: ability, possibility, (unconventional) right, liberty
+    adjective: 
+      unconventional: able, possible
+    pre-verb: can (do smth), may (do smth)
+
+- kepeken:
+    noun: use, (unconventional) practice
+    verb: 
+      w/ obj: to use smth
+    preposition: (do smth) using, with the help of
+
+- kijetesantakalu (nimi ku suli):
+    noun: raccoon or other musteloid
+- kili:
+    noun: fruit, vegetable, mushroom
+
+- kin (nimi ku suli):
+    particle: very, really, also
+    notes: In the first official book, this word was merged with “a”. However, many people use it separately from “a”. They would only use “a” to emphasize someone’s feelings.
+
+- kipisi (nimi ku suli):
+    verb: to cut, to divide
+    notes: This is an old word that was not included in the first official book, but which many people still use. Those who want to only use lipu pu vocabulary might want to use “tu”, which can also be used as a verb to mean “to divide”, the same way “wan” means “to unite”.
+
+- kiwen:
+    noun: hard object, metal, stone, solid
+    adjective: hard, metallic, solid
+
+- ko:
+    noun: powder, clay, paste, semi-solid
+
+- kokosila (nimi ku suli):
+    verb: to speak not in toki pona in an environment where others speak toki pona
+    notes: This word is taken from an Esperanto verb “krokodili”, which in turn means to not speak Esperanto in an Esperanto environment.
+
+- kon:
+    noun: air, essence, spirit, (unconventional) gas
+    adjective: invisible, ephemeral, (unconventional) gaseous
+
+- ku (nimi ku suli):
+    noun: the Toki Pona Dictionary by Sonja Lang
+    verb: to interact with ku
+    notes: Much like interacting with the first official toki pona book was given the word “pu”, so does the second book with “ku”. In fact, in lipu ku, words “ju”, “lu”, “nu”, “su” and “u” are all listed as “(word reserved for future use by Sonja Lang)”, presumably to be given to the next five official toki pona books that (in my opinion) should be created in the future.
+
+- kule:
+    noun: color, (rare) gender
+    adjective: colorful, painted
+    verb: to paint smth a color
+
+- kulupu:
+    noun: group, community, company, society, nation, tribe
+    adjective: communal, social
+
+- kute:
+    noun: ear, hearing
+    adjective: …-sounding
+    verb: to hear, to listen, to obey
+
+- la:
+    particle: if/when (introduces context)
+
+- lanpan (nimi ku suli):
+    verb: to get, to take, to steal
+    notes: Without this word, the typical way to express getting or taking something would be “kama jo e …” (to come into possession of …), possibly with additional adjectives like “ike” or “utala”. The word is famously used in the title of “lanpan pan”, the toki pona translation/summary of Peter Kropotkin’s “The Conquest of Bread”.
+
+- lape:
+    noun: sleep, rest
+    adjective: sleeping, restful
+    verb: to sleep, to rest
+
+- laso:
+    noun: the color blue, green (and its shades)
+    adjective: blue, green (and its shades)
+    verb: to color something blue/green
+
+- lawa:
+    noun: head, mind
+    adjective: main, primary, controlling, ruling
+    verb: to head, to control, to direct, to guide, to lead, to own, to rule
+
+- leko (nimi ku suli):
+    noun: square, block, (sometimes) stairs
+    notes: This is an old word that was not included in the first official book, but which is actively used by people, as it’s considered hard to express the meaning of “square” without it.
+
+- len:
+    noun: cloth, clothes, fabric, layer of privacy
+    adjective: clothed, made of cloth/fabric
+    verb: to clothe, to provide a layer of privacy
+
+- lete:
+    noun: cold
+    adjective: cold, cool, raw, uncooked
+    verb: to cool down
+
+- li:
+    particle: (between subj. and verb/adj.)
+
+- lili:
+    noun: smallness
+    adjective: small, few, young
+    verb: to shrink
+- linja:
+    noun: long flexible object, string, rope, hair
+
+- lipu:
+    noun: flat object, book, document, paper, page, record, website
+    adjective: flat, used as lipu, lipu-like, of lipu
+
+- loje:
+    noun: the color red (and its shades)
+    adjective: red (and its shades)
+    verb: to color smth red
+
+- lon:
+    noun: truth, life, existence
+    adjective: real, true, present, existing
+    verb: is true, exists
+    preposition: in, at, on
+
+- luka:
+    noun: hand, arm
+    number: 5 (complex system)
+
+- lukin:
+    noun: eye, vision
+    adjective: …-looking, visual
+    verb: to look, to see, to read
+    pre-verb: to seek (to do something)
+
+- lupa:
+    noun: hole, door, orifice, window
+
+- ma:
+    noun: earth, land, outdoors, territory, country
+
+- mama:
+    noun: parent, ancestor, creator, origin, caretaker
+    verb: to create, to parent, to take care of
+
+- mani:
+    noun: money, large domesticated animal
+    adjective: (unconventional) wealthy
+
+- meli:
+    noun: woman, female, wife
+    adjective: feminine
+
+- meso (nimi ku suli):
+    noun: middle, center
+    adjective: average, moderate, mediocre
+    notes: In some ways, this word is similar to “insa”, but it also lets people say that a thing is moderately X without having to use phrases like “ona li wawa mute ala, li wawa lili ala”.
+
+- mi:
+    noun: i, me, we, us
+    adjective: my, our
+
+- mije:
+    noun: man, male, husband
+    adjective: masculine
+
+- misikeke (nimi ku suli):
+    noun: medicine, cure
+    adjective: medicinal
+    verb: to cure
+    notes: This word was invented by Sonja Lang, but was not included as part of lipu pu. (My personal guess is because “ijo pi pona sijelo” is a rather simple way to say “medicine” without it.)
+
+- moku:
+    noun: food
+    adjective: edible, of food
+    verb: to eat, to drink, to swallow
+
+- moli:
+    noun: death
+    adjective: dead, dying
+    verb: to kill
+
+- monsi:
+    noun: back, behind, rear, butt
+    adjective: back, rear
+
+- monsuta (nimi ku suli):
+    noun: fear, monster
+    adjective: scary, monstrous
+    verb: to scare, to be afraid of, (sometimes) to turn into a monster
+    notes: The usage of this word can be especially confusing without extra context. Some people refer to this confusion as “monsutatesu”.
+
+- mu:
+    notes: (any animal sound)
+
+- mun:
+    noun: moon, star, night sky object
+    adjective: lunar, stellar
+
+- musi:
+    noun: game, art
+    adjective: entertaining, artistic, amusing
+    verb: to amuse, to play, to have fun
+
+- mute:
+    noun: quantity
+    adjective: many, more
+    number: 3 or more (simple system), 20 (complex system)
+
+- n (nimi ku suli):
+    interjection: um…, hm… (“thinking noise”)
+    notes: Technically, the word “n” breaks the rules of toki pona by using a non-allowed syllable, but as it basically functions as a word on its own, it’s allowed. Or one can interpret syllable-final “n” as a separate mora, like in Japanese, where “n” on its own is apparently also used as an interjection…
+
+- namako (nimi ku suli):
+    noun: spice, addition
+    adjective: additional, extra
+    verb: to add, to spice up
+    notes: In the first official book, this word was merged with “sin”. However, many people keep using it separately from “sin”. “sin” is interpreted to mean “new” and “namako” to mean “additional”.
+
+- nanpa:
+    noun: number
+    adjective: -th (ordinal indicator), mathematical, numeric, (unconventional) digital
+
+- nasa:
+    adjective: weird, unusual, strange, drunk
+
+- nasin:
+    noun: path, road, street, directive, way, custom
+    adjective: street-, true to the directive/way/custom
+    verb: to guide, to show the path
+
+- nena:
+    noun: hill, mountain, button, bump, nose
+    adjective: hilly, mountainous, bumpy
+
+- ni:
+    noun: this, that
+
+- nimi:
+    noun: word, name
+
+- noka:
+    noun: foot, leg, bottom, lower part, under (smth)
+
+- o:
+    particle: (addressing people, commands)
+
+- oko (nimi ku suli):
+    noun: eye
+    notes: In the first official book, this word was merged into “lukin”. People who use this word separately from “lukin” typically use “oko” to mean “eye” and “lukin” to mean “sight” or “vision”.
+
+- olin:
+    noun: love, compassion, affection, respect
+    adjective: loved, favorite, respected
+    verb: to love, to respect
+
+- ona:
+    noun: he, she, they, it
+    adjective: his, her, their, its
+
+- open:
+    noun: start, beginning
+    adjective: initial, starting
+    verb: to start, to open, to turn on
+    pre-verb: to begin (doing something)
+
+- pakala:
+    noun: damage, mistake
+    adjective: broken, wrong
+    verb: to break, to make mistakes
+    particle: (generic curse)
+
+- pali:
+    noun: work, labor
+    adjective: working
+    verb: to work (on), to make
+
+- palisa:
+    noun: long solid object, branch, stick, (unconventional) length
+    adjective: long
+
+- pan:
+    noun: bread, grain, corn, rice, pizza
+
+- pana:
+    adjective: (unconventional) given, sent, released
+    verb: to give, to send, to emit, to release
+
+- pi:
+    particle: “of” (regroups two or more modifiers)
+
+- pilin:
+    noun: heart, feeling, touch, sense
+    adjective: feeling, touch-based
+    verb: to touch, to think, to feel
+
+- supa:
+    noun: horizontal surface
+
+- suwi:
+    noun: (unconventional) sweets, fragrances
+    adjective: sweet, fragrant, cute, adorable
+
+- tan:
+    noun: cause, reason, origin
+    adjective: original
+    verb: to cause
+    preposition: from, because of
+
+- taso:
+    particle: but, however
+    adjective: only
+
+- tawa:
+    noun: movement
+    adjective: moving
+    verb: to move
+    preposition: to, for, from perspective of
+
+- telo:
+    noun/adjective: water, fluid, liquid
+    adjective: wet, fluid, liquid
+    verb: to water, to clean
+
+- tenpo:
+    noun: time, moment, occasion
+    adjective: temporal
+
+- toki:
+    noun: speech, conversation, language
+    adjective: verbal, conversational
+    verb: to speak, to talk, to use language, to think
+
+- tomo:
+    noun: home, building, structure, indoor space, room
+    adjective: indoor
+
+- tonsi (nimi ku suli):
+    noun: non-binary person, trans person
+    adjective: gender-nonconforming, trans
+    notes: The word “tonsi” was created by the community after the official book was released and, according to a poll in October of 2021, is the most accepted “new” non-official word.
+
+- tu:
+    number: 2
+    noun: divide
+    adjective: divided
+    verb: to divide
+    notes: Using “tu” at the end of a noun phrase is generally associated with the number 2. The meaning “divided” is usually specified by using a “li” particle: kulupu tu – two communities, kulupu li tu. – the community is divided.
+
+- unpa:
+    noun: sex
+    adjective: sexual
+    verb: to have sex with
+
+- uta:
+    noun: mouth, lips
+    adjective: oral
+
+- utala:
+    noun: fight, battle, challenge, war
+    adjective: aggressive, warlike
+    verb: to fight, to battle, to challenge
+
+- walo:
+    noun: the color white (and its shades)
+    adjective: white, bright/light
+    verb: to color something white
+
+- wan:
+    number: 1
+    noun: part (of smth)
+    adjective: united, married
+    verb: to unite, to marry
+    notes: Using “wan” at the end of a noun phrase is generally associated with the number 1. The meaning “united” is usually specified by using a “li” particle: kulupu wan – one community, kulupu li wan. – the community is united. kulupu mute wan – 21 communities (complex numbering system), kulupu mute li wan – many (or 20) communities are united.
+
+- waso:
+    noun: bird, flying creature
+
+- wawa:
+    noun: strength, power, energy
+    adjective: strong, powerful, energetic
+
+- weka:
+    noun: absence, remoteness
+    adjective: absent, away, remote
+    verb: remove, get rid of
+
+- wile:
+    noun: want, need, desire
+    adjective: desired, needed, required
+    verb: to want smth
+    pre-verb: to want to do smth
+
+
+- supa:
+    noun: horizontal surface
+
+- suwi:
+    noun: (unconventional) sweets, fragrances
+    adjective: sweet, fragrant, cute, adorable
+
+- tan:
+    noun: cause, reason, origin
+    adjective: original
+    verb: to cause
+    preposition: from, because of
+
+- taso:
+    particle: but, however
+    adjective: only
+
+- tawa:
+    noun: movement
+    adjective: moving
+    verb: to move
+    preposition: to, for, from perspective of
+
+- telo:
+    noun/adjective: water, fluid, liquid
+    adjective: wet, fluid, liquid
+    verb: to water, to clean
+
+- tenpo:
+    noun: time, moment, occasion
+    adjective: temporal
+
+- toki:
+    noun: speech, conversation, language
+    adjective: verbal, conversational
+    verb: to speak, to talk, to use language, to think
+
+- tomo:
+    noun: home, building, structure, indoor space, room
+    adjective: indoor
+
+- tonsi (nimi ku suli):
+    noun: non-binary person, trans person
+    adjective: gender-nonconforming, trans
+    notes: The word “tonsi” was created by the community after the official book was released and, according to a poll in October of 2021, is the most accepted “new” non-official word.
+
+- tu:
+    number: 2
+    noun: divide
+    adjective: divided
+    verb: to divide
+    notes: Using “tu” at the end of a noun phrase is generally associated with the number 2. The meaning “divided” is usually specified by using a “li” particle: kulupu tu – two communities, kulupu li tu. – the community is divided.
+
+- unpa:
+    noun: sex
+    adjective: sexual
+    verb: to have sex with
+
+- uta:
+    noun: mouth, lips
+    adjective: oral
+
+- utala:
+    noun: fight, battle, challenge, war
+    adjective: aggressive, warlike
+    verb: to fight, to battle, to challenge
+
+- walo:
+    noun: the color white (and its shades)
+    adjective: white, bright/light
+    verb: to color something white
+
+- wan:
+    number: 1
+    noun: part (of smth)
+    adjective: united, married
+    verb: to unite, to marry
+    notes: Using “wan” at the end of a noun phrase is generally associated with the number 1. The meaning “united” is usually specified by using a “li” particle: kulupu wan – one community, kulupu li wan. – the community is united. kulupu mute wan – 21 communities (complex numbering system), kulupu mute li wan – many (or 20) communities are united.
+
+- waso:
+    noun: bird, flying creature
+
+- wawa:
+    noun: strength, power, energy
+    adjective: strong, powerful, energetic
+
+- weka:
+    noun: absence, remoteness
+    adjective: absent, away, remote
+    verb: remove, get rid of
+
+- wile:
+    noun: want, need, desire
+    adjective: desired, needed, required
+    verb: to want smth
+    pre-verb: to want to do smth
+
