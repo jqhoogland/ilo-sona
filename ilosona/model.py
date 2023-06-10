@@ -7,6 +7,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
+
 class SelfAttention(nn.Module):
     def __init__(self, embed_size, heads):
         super(SelfAttention, self).__init__()
@@ -72,13 +73,13 @@ class Decoder(nn.Module):
     def __init__(
         self,
         vocab_size,
-        embed_size,
-        num_layers,
-        heads,
-        device,
-        forward_expansion,
-        dropout,
-        max_length,
+        embed_size=256,
+        num_layers=8,
+        heads=8,
+        device="cpu",
+        forward_expansion=4,
+        dropout=0.0,
+        max_length=1024,
     ):
         super(Decoder, self).__init__()
         self.embed_size = embed_size
@@ -114,4 +115,3 @@ class Decoder(nn.Module):
         out = self.fc_out(out)
 
         return out
-

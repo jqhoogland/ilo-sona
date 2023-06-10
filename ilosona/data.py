@@ -17,10 +17,11 @@ from ilosona.tokinizer import Tokinizer
 import os
 
 class TokiPonaDataset(Dataset):
-    def __init__(self, corpus_dir):
+    def __init__(self, corpus_dir, max_length=1024):
         self.corpus_dir = corpus_dir
         self.tokenizer = Tokinizer()
         self.file_list = self.get_file_list()
+        self.max_length = max_length
 
     def get_file_list(self):
         file_list = []
@@ -37,5 +38,5 @@ class TokiPonaDataset(Dataset):
         with open(file_path, 'r') as f:
             text = f.read()
         tokens = self.tokenizer.encode_plus(
-            text, truncation=True, max_length=1024, padding='max_length', return_tensors='pt')
+            text, truncation=True, max_length=self.max_length, padding='max_length', return_tensors='pt')
         return tokens['input_ids'].squeeze(), tokens['attention_mask'].squeeze()
