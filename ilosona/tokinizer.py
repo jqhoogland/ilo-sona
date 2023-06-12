@@ -3,9 +3,9 @@ The toki pona tokenizer.
 """
 import warnings
 
-import torch
-import torchtext
-from torchtext.data.utils import get_tokenizer
+import numpy as np
+
+# import torch
 
 
 def unpack_lists(nested_list):
@@ -143,10 +143,10 @@ DEFAULT_VOCABULARY = [
     "wile",
 ]
 
-LETTERS = list("abcdefghijklmnopqrstuvwxyz")
-DEFAULT_PUNCTUATION = [".", ",", "?", ")", "(", "!", "[", "]", ":", ";", '"', "'"]
-VOCABULARY = DEFAULT_VOCABULARY + DEFAULT_PUNCTUATION + LETTERS
-
+LETTERS = list("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".upper())
+DEFAULT_PUNCTUATION = list(".,?!()[]{}:;\"'\\/-+=~<>`@#$%^&*_")
+NUMBERS = list("1234567890")
+VOCABULARY = DEFAULT_VOCABULARY + DEFAULT_PUNCTUATION + LETTERS + NUMBERS
 
 class Tokinizer:
     def __init__(self, punctuation=DEFAULT_PUNCTUATION, vocabulary=DEFAULT_VOCABULARY):
@@ -164,9 +164,7 @@ class Tokinizer:
                 flattened_list.append(item)
         return flattened_list
 
-    def toki_pona_tokenizer(self, text):
-        text = text.lower()
-
+    def split(self, text):
         for char in self.punctuation:
             text = text.replace(char, " " + char + " ")
         
@@ -183,13 +181,43 @@ class Tokinizer:
     def tokens_to_ids(self, tokens):
         return [self.token_to_id[token] for token in tokens if token in self.token_to_id]
 
-    def encode_plus(self, text, truncation=False, return_tensors='pt'):
+    def encode_ids(self, text, truncation=False, return_tensors='pt'):
         warnings.warn("Truncation is not supported", UserWarning)
 
-        tokens = self.toki_pona_tokenizer(text)
+        tokens = self.split(text)
         input_ids = self.tokens_to_ids(tokens)
 
-        if return_tensors == 'pt':
-            input_ids = torch.tensor([input_ids])
+        # if return_tensors == 'pt':
+        #     input_ids = torch.tensor([input_ids])
 
-        return {'input_ids': input_ids}
+        return input_ids
+
+    def encode_ids(self, text, truncation=False, return_tensors='pt'):
+        warnings.warn("Truncation is not supported", UserWarning)
+
+        tokens = self.split(text)
+        input_ids = self.tokens_to_ids(tokens)
+
+        # if return_tensors == 'pt':
+        #     input_ids = torch.tensor([input_ids])
+
+        return input_ids
+
+    def encode(self, text):
+        ids = self.encode_ids(text)
+        return np.onehot(ids)
+    
+    def combine(self, words):
+        raise NotImplementedError
+
+
+if __name__ == "__main__":
+    with open("./corpus-test/jan lawa Oliki Soweli Elepanto.txt", "r") as f:
+        text = f.read()
+
+    tokinizer = Tokinizer()
+
+    print(text)
+    print("---")
+    print(tokinizer.split(text))
+
