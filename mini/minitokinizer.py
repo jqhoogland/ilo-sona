@@ -2,7 +2,11 @@ import yaml
 import warnings
 import torch as t
 import re
+from string import printable
 
+
+def is_latin(text):
+    return not bool(set(text) - set(printable))
 
 def get_vocab(path):
     with open(path, 'r') as f: 
@@ -32,8 +36,8 @@ DIGITS = list("0123456789")
 
 class Tokinizer:
     def __init__(self, vocabulary=VOCABULARY):
-        self.vocabulary = vocabulary
-        self.tokens = set(vocabulary + LETTERS + PUNCTUATION + DIGITS + [" "])
+        self.vocabulary = set(vocabulary)
+        self.tokens = list(vocabulary) + LETTERS + PUNCTUATION + DIGITS + [" "]
         self.token_to_id = {token: i for i, token in enumerate(self.tokens)}
         self.id_to_token = {v: k for k, v in self.token_to_id.items()}
         self.vocab_size = len(self.vocabulary)
@@ -61,6 +65,7 @@ class Tokinizer:
         tokinized = self.tokinize(text)
         # If we need to add new tokens, now is the time.
         if self.need_retoki: 
+            print("RETOKI")
             self.retoki()
 
         encoded_tks = [self.token_to_id[tk] for tk in tokinized]
@@ -80,6 +85,7 @@ class Tokinizer:
         space = False
         # I learned regex for the billionth time to write this.
         # If you ask me how it works I have probably forgotten again.
+        # Just trust me bro.
         for token in re.findall(r"\w+|[^\w\s]|[\s]", text):
             # Check if proper noun (we need to split into chars later).
             proper_noun = True if token[0].isupper() else False
@@ -90,20 +96,33 @@ class Tokinizer:
             else:
                 tokens.append(token)
             
-            # Split if we just had a proper noun.
-            if proper_noun:
+            # Split if we just had a proper noun, or a number.
+            if proper_noun or token.isnumeric():
                 tokens = tokens[:-1] + list(tokens[-1])
             
-            # Record if we just looked at a space (to prepend to next token if necessary).
-            space = True if token == " " else False
-
             # Finally check if we have seen this token before.
             # If we haven't, we yell at the user.
-            if not(token in self.tokens or proper_noun or token in self.new_tokens):
-                warnings.warn(f"{token} wasn't found in our dictionary! retoki will be run before encoding.", UserWarning)
+            if not(token in (self.tokens+self.new_tokens) or proper_noun or token.isnumeric()):
+                warnings.warn(f"'{token}' wasn't found in my dictionary! retoki will run before encoding.", UserWarning)
                 self.new_tokens.append(token)
                 self.new_tokens.append(" " + token)
                 self.need_retoki = True
+            # There's also the corner case of discovering a new token that's a single alphabetical character.
+            if token.isalpha() and space and len(token) == 1 and is_latin(token):
+                # Check if the token is new.
+                if " "+token not in (self.tokens+self.new_tokens):
+                    warnings.warn(f"Word '{token}' wasn't found in my dictionary! retoki will run before encoding.", UserWarning)
+                    self.new_tokens.append(" " + token)
+                    self.need_retoki = True
+            # Finally deal with non-latin characters.
+            # This is a bit incomplete, might need to split words on these characters if necessary.
+            if not is_latin(token) and len(token) == 1:
+                warnings.warn(f"'{token}' wasn't found in my dictionary! retoki will run before encoding.", UserWarning)
+                self.new_tokens.append(token)
+                self.need_retoki = True
+
+            # Record if we just looked at a space (to prepend to next token if necessary).
+            space = True if token == " " else False
         return tokens
 
 if __name__ == "__main__":
