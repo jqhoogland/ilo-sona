@@ -70,7 +70,7 @@ class Tokinizer:
                 split = list(tokens[-1])
                 for c in split:
                     if c not in self.tokens:
-                        warnings.warn(f"'{c}' wasn't found in my dictionary!", UserWarning)
+                        # warnings.warn(f"'{c}' wasn't found in my dictionary!", UserWarning)
                         tokens[-1] = "<undefined>"
                         break
                 else:
@@ -78,7 +78,7 @@ class Tokinizer:
             else:
                 # Yell at the user if we haven't seen this token before.
                 if tokens[-1] not in self.tokens:
-                    warnings.warn(f"'{token}' wasn't found in my dictionary!", UserWarning)
+                    # warnings.warn(f"'{token}' wasn't found in my dictionary!", UserWarning)
                     tokens[-1] = "<undefined>"                
 
             # Record if we just looked at a space (to prepend to next token if necessary).
