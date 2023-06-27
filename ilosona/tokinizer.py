@@ -188,7 +188,7 @@ class Tokinizer:
             if c in self.tokens or c == " ":
                 tokens.append(c)
             else: 
-                warnings.warn(f"{c} not in vocab", UserWarning)
+                warnings.warn(c + " not in vocab", UserWarning)
                                 
         return tokens
     
@@ -222,20 +222,19 @@ class Tokinizer:
         ids = self.encode_ids(text)
         return np.onehot(ids)
     
-    def combine(self, words):
+    def combine(self, tokens):
         text = ""
-
         full_word = ""
 
-        for word in words:
-            if word in self.vocabulary and not full_word:
-                word += " "
-                text += word 
-            elif word in self.final_punctuation and text[-1] == " ":
+        for token in tokens:
+            if token in self.vocabulary and not full_word:
+                token += " "
+                text += token
+            elif token in self.final_punctuation and text[-1] == " ":
                 text = text[:-1]
-                text += word 
+                text += token 
             else:
-                full_word += word
+                full_word += token
 
 
         return text
@@ -251,5 +250,7 @@ if __name__ == "__main__":
     print(text)
     print("---")
     print(tokens)
+
+    print("---")
 
     print(tokinizer.combine(tokens))
