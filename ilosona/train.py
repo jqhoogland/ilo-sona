@@ -1,9 +1,9 @@
 import torch
 import torch.optim as optim
-import wandb
 from torch.optim.lr_scheduler import StepLR
 from torch.utils.data import DataLoader
 
+import wandb
 from ilosona.data import TokiPonaDataset
 from ilosona.model import Decoder
 
@@ -64,10 +64,13 @@ config = {
 MAX_LENGTH = 1024
 
 # Load the dataset
-dataset = TokiPonaDataset("../corpus/Independent/Corey", max_length=MAX_LENGTH)
+dataset = TokiPonaDataset("../corpus/Independent", max_length=MAX_LENGTH)
+
+print(dataset.samples)
 
 # Load the model (make sure to adjust the parameters according to your needs)
 model = Decoder(vocab_size=dataset.tokenizer.vocab_size, max_length=MAX_LENGTH)
 
+
 # Train the model
-train(model, dataset, config)
+# train(model, dataset, config)
