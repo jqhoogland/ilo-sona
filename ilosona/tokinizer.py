@@ -147,7 +147,7 @@ VOCABULARY = DEFAULT_VOCABULARY
 LETTERS = list("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".upper())
 DEFAULT_PUNCTUATION = list(".,?!()[]{}:;\"'\\/-+=~<>`@#$%^&*_\n")
 NUMBERS = list("0123456789")
-EXTRA = DEFAULT_PUNCTUATION + LETTERS + NUMBERS
+EXTRA = DEFAULT_PUNCTUATION + NUMBERS
 
 
 class Tokinizer:
@@ -157,7 +157,9 @@ class Tokinizer:
         self.tokens = vocabulary + extra
         self.token_to_id = {token: i for i, token in enumerate(self.tokens)}
         self.vocab_size = len(self.vocabulary)
-        self.final_punctuation = ".,;:?!)-_"
+        self.final_punctuation = "'.,;:?!)-_\\n"
+        self.default_punctuation = DEFAULT_PUNCTUATION
+        self.numbers = NUMBERS
 
     def unpack_lists(self, nested_list):
         flattened_list = []
@@ -170,7 +172,6 @@ class Tokinizer:
 
     def split(self, text):
         tokens = []
-
         curr_word = ""
 
         for c in text:
@@ -180,15 +181,11 @@ class Tokinizer:
             elif curr_word in self.vocabulary:
                 tokens.append(curr_word)
                 curr_word = ""
-                continue
-            else:
-                tokens.extend(list(curr_word))
+            else: # curr_word not in vocabulary
+                warnings.warn(f"Removing unknown word: {curr_word}", UserWarning)
                 curr_word = ""
-            
-            if c in self.tokens or c == " ":
+            if c in self.tokens: #or c == " ":
                 tokens.append(c)
-            else: 
-                warnings.warn(c + " not in vocab", UserWarning)
                                 
         return tokens
     
@@ -224,24 +221,20 @@ class Tokinizer:
     
     def combine(self, tokens):
         text = ""
-        full_word = ""
 
         for token in tokens:
-            if token in self.vocabulary and not full_word:
+            print(token)
+            if token in self.vocabulary:
                 token += " "
                 text += token
-            elif token in self.final_punctuation and text[-1] == " ":
-                text = text[:-1]
-                text += token 
-            else:
-                full_word += token
-
-
+            elif token in self.final_punctuation:
+                if text[-1] == " ":
+                    text = text[:-1]
+                text += token
         return text
 
-
 if __name__ == "__main__":
-    with open("./corpus-test/jan lawa Oliki Soweli Elepanto.txt", "r") as f:
+    with open("./corpus-test/jan_mika.txt", "r") as f:
         text = f.read()
 
     tokinizer = Tokinizer()
