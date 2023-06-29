@@ -1,0 +1,42 @@
+{
+    "os": "macOS-11.7.6-x86_64-i386-64bit",
+    "python": "3.11.2",
+    "heartbeatAt": "2023-06-29T06:08:38.215978",
+    "startedAt": "2023-06-29T06:08:37.827381",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/Jesse/Projects/ilo-sona/ilosona/train.py",
+    "codePath": "ilosona/train.py",
+    "git": {
+        "remote": "git@github.com:jqhoogland/ilo-sona.git",
+        "commit": "2382c8acc011a6b2210f00989a702e42b84a1a8f"
+    },
+    "email": "jessequinten@gmail.com",
+    "root": "/Users/Jesse/Projects/ilo-sona",
+    "host": "ucann.local",
+    "username": "Jesse",
+    "executable": "/usr/local/opt/python@3.11/bin/python3.11",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2200,
+        "min": 2200,
+        "max": 2200
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2200,
+            "min": 2200,
+            "max": 2200
+        }
+    ],
+    "disk": {
+        "total": 465.62699127197266,
+        "used": 19.011371612548828
+    },
+    "memory": {
+        "total": 16.0
+    }
+}

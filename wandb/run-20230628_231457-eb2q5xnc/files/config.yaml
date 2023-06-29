@@ -1,0 +1,85 @@
+wandb_version: 1
+
+num_epochs:
+  desc: null
+  value: 250
+logging_ivl:
+  desc: null
+  value: 100
+device:
+  desc: null
+  value: auto
+num_workers:
+  desc: null
+  value: 4
+max_iters:
+  desc: null
+  value: null
+batch_size:
+  desc: null
+  value: 512
+learning_rate:
+  desc: null
+  value: 0.0003
+betas:
+  desc: null
+  value:
+  - 0.9
+  - 0.95
+weight_decay:
+  desc: null
+  value: 0.1
+grad_norm_clip:
+  desc: null
+  value: 1.0
+n_layer:
+  desc: null
+  value: 2
+n_head:
+  desc: null
+  value: 4
+n_embd:
+  desc: null
+  value: 128
+vocab_size:
+  desc: null
+  value: 164
+block_size:
+  desc: null
+  value: 1024
+embd_pdrop:
+  desc: null
+  value: 0.1
+resid_pdrop:
+  desc: null
+  value: 0.1
+attn_pdrop:
+  desc: null
+  value: 0.1
+model_type:
+  desc: null
+  value: gpt
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.2
+    cli_version: 0.15.4
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1688019297.820881
+    t:
+      1:
+      - 1
+      - 55
+      2:
+      - 1
+      - 55
+      3:
+      - 1
+      - 16
+      - 23
+      4: 3.11.2
+      5: 0.15.4
+      8:
+      - 5

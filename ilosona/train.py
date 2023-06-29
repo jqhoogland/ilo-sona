@@ -19,11 +19,14 @@ from mingpt.model import GPT, GPTConfig
 from mingpt.trainer import TrainConfig, Trainer
 from mingpt.utils import CfgNode, set_seed
 
+print(asdict(TrainConfig()))
 
-def train(seed=0, corpus_dir="../corpus-test-cleaned"):
+
+def train(corpus_dir, seed=0, use_wandb=True):
     set_seed(seed)
 
-    dataset = TokiPonaDataset(corpus_dir, max_length=1024)
+    max_length = 1024
+    dataset = TokiPonaDataset(corpus_dir, max_length=max_length)
 
     model_config = GPTConfig(
         model_type="gpt",
@@ -31,7 +34,7 @@ def train(seed=0, corpus_dir="../corpus-test-cleaned"):
         n_head=4,
         n_embd=128,
         vocab_size=dataset.tokenizer.vocab_size,
-        block_size=128 // 8,
+        block_size=max_length,
         embd_pdrop=0.1,
         resid_pdrop=0.1,
         attn_pdrop=0.1,
@@ -39,10 +42,8 @@ def train(seed=0, corpus_dir="../corpus-test-cleaned"):
 
     model = GPT(model_config)
 
-    print(f"number of parameters: {model.num_params}")
-
     train_config = TrainConfig(
-        num_epochs=250,
+        # num_epochs=250,
         logging_ivl=100,
         device="auto",
         # dataloder parameters
@@ -59,6 +60,9 @@ def train(seed=0, corpus_dir="../corpus-test-cleaned"):
     trainer = Trainer(train_config, model, dataset)
 
     def log_to_wandb(trainer: Trainer):
+        if not use_wandb:
+            return
+
         if trainer.iter_num % trainer.config["logging_ivl"] == 0:
             loss = trainer.loss.item()
             print(
@@ -78,18 +82,20 @@ def train(seed=0, corpus_dir="../corpus-test-cleaned"):
             f"./checkpoints/checkpoint_{trainer.epoch_num}.pt",
         )
 
-    wandb.init(
-        project="toki-pona", config=asdict(trainer.config) | asdict(model_config)
-    )
-    wandb.watch(model, log="all")
+    if use_wandb:
+        wandb.init(
+            project="toki-pona", config=asdict(trainer.config) | asdict(model_config)
+        )
+        wandb.watch(model, log="all")
 
     trainer.add_callback("on_batch_end", log_to_wandb)
     trainer.add_callback("on_epoch_end", save_model)
 
     trainer.run()
 
-    wandb.finish()
+    if use_wandb:
+        wandb.finish()
 
 
 if __name__ == "__main__":
-    train()
+    train("corpus-test-basic-cleaned", use_wandb=False)

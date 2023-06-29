@@ -15,6 +15,7 @@ import os
 
 import torch
 from torch.utils.data import Dataset
+from torchtyping import TensorType
 
 from ilosona.tokinizer import Tokinizer
 
@@ -31,26 +32,45 @@ class TokiPonaDataset(Dataset):
         for root, dirs, files in os.walk(self.corpus_dir):
             for file in files:
                 file_path = os.path.join(root, file)
-                with open(file_path, 'r') as f:
+                with open(file_path, "r") as f:
                     text = f.read()
-                tokens = self.tokenizer.encode(text)['input_ids'].squeeze()
+
+                tokens = self.tokenizer.encode(text).squeeze()
+                print(tokens.shape, "HERE")
                 for i in range(0, len(tokens), self.max_length):
-                    samples.append(tokens[i:i+self.max_length])
+                    samples.append(tokens[i : i + self.max_length])
+
         return samples
 
     def __len__(self):
         return len(self.samples)
 
     def __getitem__(self, idx):
-        sample = self.samples[idx]
+        sample: TensorType["sample_len", "vocab_size"] = self.samples[idx]
         sample_length = len(sample)
+
         if sample_length < self.max_length:
             padding_length = self.max_length - sample_length
-            sample = torch.cat([sample, torch.zeros(padding_length, dtype=torch.long)], dim=0)
-            mask = torch.cat([torch.ones(sample_length, dtype=torch.long), torch.zeros(padding_length, dtype=torch.long)], dim=0)
-        else:
-            mask = torch.ones(self.max_length, dtype=torch.long)
-        return sample, mask
+            sample = torch.cat(
+                [
+                    sample,
+                    torch.zeros(
+                        (padding_length, self.tokenizer.vocab_size), dtype=torch.long
+                    ),
+                ],
+                dim=0,
+            )
+        #     mask = torch.cat(
+        #         [
+        #             torch.ones(sample_length, dtype=torch.long),
+        #             torch.zeros(padding_length, dtype=torch.long),
+        #         ],
+        #         dim=0,
+        #     )
+        # else:
+        #     mask = torch.ones(self.max_length, dtype=torch.long)
+
+        return sample
 
 
 if __name__ == "__main__":

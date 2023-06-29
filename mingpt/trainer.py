@@ -15,18 +15,18 @@ from mingpt.utils import CfgNode as CN
 
 @dataclass
 class TrainConfig:
-    num_epochs = 250
-    logging_ivl = 100
-    device = "auto"
+    num_epochs: int = 250
+    logging_ivl: int = 100
+    device: str = "auto"
     # dataloder parameters
-    num_workers = 4
+    num_workers: int = 4
     # optimizer parameters
-    max_iters = None
-    batch_size = 64
-    learning_rate = 3e-4
-    betas = (0.9, 0.95)
-    weight_decay = 0.1  # only applied on matmul weights
-    grad_norm_clip = 1.0
+    max_iters: int | None = None
+    batch_size: int = 64
+    learning_rate: float = 3e-4
+    betas: tuple[float, float] = (0.9, 0.95)
+    weight_decay: float = 0.1  # only applied on matmul weights
+    grad_norm_clip: float = 1.0
 
 
 class Trainer:
@@ -35,7 +35,7 @@ class Trainer:
         self.model = model
         self.optimizer = None
         self.train_dataset = train_dataset
-        self.callbacks = defaultdict(list)
+        self.callbacks: dict[str, list[callable]] = defaultdict(list)
 
         # determine the device we'll train on
         if config.device == "auto":
@@ -91,6 +91,7 @@ class Trainer:
             except StopIteration:
                 data_iter = iter(train_loader)
                 batch = next(data_iter)
+                
             batch = [t.to(self.device) for t in batch]
             x, y = batch
 

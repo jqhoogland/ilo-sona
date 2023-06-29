@@ -151,13 +151,14 @@ NUMBERS = list("0123456789")
 EXTRA = DEFAULT_PUNCTUATION + NUMBERS
 VOCABULARY = WORDS + EXTRA
 
+
 class Tokinizer:
-    def __init__(self, vocabulary=WORDS, extra=EXTRA):
-        self.vocabulary = vocabulary
+    def __init__(self, words=WORDS, extra=EXTRA):
+        self.words = words
         self.extra = extra
-        self.tokens = vocabulary + extra
+        self.tokens = words + extra
         self.token_to_id = {token: i for i, token in enumerate(self.tokens)}
-        self.vocab_size = len(self.vocabulary)
+        self.vocab_size = len(self.tokens)
         self.final_punctuation = "'.,;:?!)-_\\n"
         self.default_punctuation = DEFAULT_PUNCTUATION
         self.numbers = NUMBERS
@@ -179,47 +180,49 @@ class Tokinizer:
             if c in LETTERS:
                 curr_word += c
                 continue
-            elif curr_word in self.vocabulary:
+            elif curr_word in self.words:
                 tokens.append(curr_word)
                 curr_word = ""
-            else: # curr_word not in vocabulary
+            else:  # curr_word not in vocabulary
                 warnings.warn(f"Removing unknown word: {curr_word}", UserWarning)
                 curr_word = ""
-            if c in self.tokens: #or c == " ":
+            if c in self.tokens:  # or c == " ":
                 tokens.append(c)
-                                
-        return tokens
-    
-    def tokens_to_ids(self, tokens):
-        return np.array([self.token_to_id[token] for token in tokens if token in self.token_to_id])
 
-    def encode_ids(self, text, truncation=False, return_tensors='pt'):
+        return tokens
+
+    def tokens_to_ids(self, tokens):
+        return np.array(
+            [self.token_to_id[token] for token in tokens if token in self.token_to_id]
+        )
+
+    def encode_ids(self, text, truncation=False, return_tensors="pt"):
         warnings.warn("Truncation is not supported", UserWarning)
 
         tokens = self.split(text)
         input_ids = self.tokens_to_ids(tokens)
 
-        if return_tensors == 'pt':
+        if return_tensors == "pt":
             input_ids = torch.tensor([input_ids])
 
         return input_ids
 
-    def encode(self, text, truncation=False, return_tensors='pt'):
+    def encode(self, text, truncation=False, return_tensors="pt"):
         """Get a one-hot encoded array"""
-        ids = self.encode_ids(text, truncation=truncation, return_tensors='np')
-        ids_1hot = np.zeros((ids.size, ids.max() + 1))
+        ids = self.encode_ids(text, truncation=truncation, return_tensors="np")
+        ids_1hot = np.zeros((ids.size, self.vocab_size + 1))
         ids_1hot[np.arange(ids.size), ids] = 1
 
-        if return_tensors == 'pt':
+        if return_tensors == "pt":
             ids_1hot = torch.tensor(ids_1hot)
 
         return ids_1hot
-    
+
     def combine(self, tokens):
         text = ""
 
         for token in tokens:
-            if token in self.vocabulary:
+            if token in self.words:
                 token += " "
                 text += token
             elif token in self.final_punctuation:
@@ -228,6 +231,7 @@ class Tokinizer:
                 text += token
 
         return text
+
 
 if __name__ == "__main__":
     with open("./corpus-test/jan_mika.txt", "r") as f:
