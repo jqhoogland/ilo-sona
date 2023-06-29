@@ -19,7 +19,7 @@ def unpack_lists(nested_list):
     return flattened_list
 
 
-DEFAULT_VOCABULARY = [
+WORDS = [
     "a",
     "akesi",
     "ala",
@@ -144,15 +144,15 @@ DEFAULT_VOCABULARY = [
     "wile",
 ]
 
-VOCABULARY = DEFAULT_VOCABULARY
+
 LETTERS = list("abcdefghijklmnopqrstuvwxyz" + "abcdefghijklmnopqrstuvwxyz".upper())
 DEFAULT_PUNCTUATION = list(".,?!()[]{}:;\"'\\/-+=~<>`@#$%^&*_\n")
 NUMBERS = list("0123456789")
 EXTRA = DEFAULT_PUNCTUATION + NUMBERS
-
+VOCABULARY = WORDS + EXTRA
 
 class Tokinizer:
-    def __init__(self, vocabulary=DEFAULT_VOCABULARY, extra=EXTRA):
+    def __init__(self, vocabulary=WORDS, extra=EXTRA):
         self.vocabulary = vocabulary
         self.extra = extra
         self.tokens = vocabulary + extra
@@ -243,3 +243,5 @@ if __name__ == "__main__":
     print("---")
 
     # print(tokinizer.combine(tokens))
+
+    print(len(VOCABULARY))
