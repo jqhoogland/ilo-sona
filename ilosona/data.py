@@ -33,7 +33,7 @@ class TokiPonaDataset(Dataset):
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r') as f:
                     text = f.read()
-                tokens = self.tokenizer.encode_plus(text, truncation=False, return_tensors='pt')['input_ids'].squeeze()
+                tokens = self.tokenizer.encode(text)['input_ids'].squeeze()
                 for i in range(0, len(tokens), self.max_length):
                     samples.append(tokens[i:i+self.max_length])
         return samples
@@ -51,3 +51,8 @@ class TokiPonaDataset(Dataset):
         else:
             mask = torch.ones(self.max_length, dtype=torch.long)
         return sample, mask
+
+
+if __name__ == "__main__":
+    dataset = TokiPonaDataset("./corpus")
+    print(len(dataset))

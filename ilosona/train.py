@@ -1,11 +1,12 @@
 import torch
 import torch.optim as optim
-import wandb
 from torch.optim.lr_scheduler import StepLR
 from torch.utils.data import DataLoader
 
+import wandb
 from ilosona.data import TokiPonaDataset
 from ilosona.model import Decoder
+
 
 def train(model, dataset, config):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -45,7 +46,7 @@ def train(model, dataset, config):
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
             'scheduler_state_dict': scheduler.state_dict(),
-            'loss': loss
+            'loss': loss,
         }, f'checkpoint_{epoch}.pt')
 
     wandb.finish()
@@ -63,10 +64,13 @@ config = {
 MAX_LENGTH = 1024
 
 # Load the dataset
-dataset = TokiPonaDataset("../Corpus", max_length=MAX_LENGTH)
+dataset = TokiPonaDataset("../corpus/Independent", max_length=MAX_LENGTH)
+
+print(dataset.samples)
 
 # Load the model (make sure to adjust the parameters according to your needs)
 model = Decoder(vocab_size=dataset.tokenizer.vocab_size, max_length=MAX_LENGTH)
 
+
 # Train the model
-train(model, dataset, config)
+# train(model, dataset, config)
