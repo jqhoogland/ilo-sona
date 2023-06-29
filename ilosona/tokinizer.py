@@ -223,12 +223,11 @@ class Tokinizer:
         text = ""
 
         for token in tokens:
-            print(token)
             if token in self.vocabulary:
                 token += " "
                 text += token
             elif token in self.final_punctuation:
-                if text[-1] == " ":
+                if text and text[-1] == " ":
                     text = text[:-1]
                 text += token
         return text
