@@ -4,6 +4,7 @@ The toki pona tokenizer.
 import warnings
 
 import numpy as np
+import torch
 
 # import torch
 
@@ -190,7 +191,7 @@ class Tokinizer:
         return tokens
     
     def tokens_to_ids(self, tokens):
-        return [self.token_to_id[token] for token in tokens if token in self.token_to_id]
+        return np.array([self.token_to_id[token] for token in tokens if token in self.token_to_id])
 
     def encode_ids(self, text, truncation=False, return_tensors='pt'):
         warnings.warn("Truncation is not supported", UserWarning)
@@ -198,26 +199,21 @@ class Tokinizer:
         tokens = self.split(text)
         input_ids = self.tokens_to_ids(tokens)
 
-        # if return_tensors == 'pt':
-        #     input_ids = torch.tensor([input_ids])
+        if return_tensors == 'pt':
+            input_ids = torch.tensor([input_ids])
 
         return input_ids
 
-    def encode_ids(self, text, truncation=False, return_tensors='pt'):
-        warnings.warn("Truncation is not supported", UserWarning)
-
-        tokens = self.split(text)
-        input_ids = self.tokens_to_ids(tokens)
-
-        # if return_tensors == 'pt':
-        #     input_ids = torch.tensor([input_ids])
-
-        return input_ids
-
-    def encode(self, text):
+    def encode(self, text, truncation=False, return_tensors='pt'):
         """Get a one-hot encoded array"""
-        ids = self.encode_ids(text)
-        return np.onehot(ids)
+        ids = self.encode_ids(text, truncation=truncation, return_tensors='np')
+        ids_1hot = np.zeros((ids.size, ids.max() + 1))
+        ids_1hot[np.arange(ids.size), ids] = 1
+
+        if return_tensors == 'pt':
+            ids_1hot = torch.tensor(ids_1hot)
+
+        return ids_1hot
     
     def combine(self, tokens):
         text = ""
@@ -231,6 +227,7 @@ class Tokinizer:
                 if text[-1] == " ":
                     text = text[:-1]
                 text += token
+
         return text
 
 if __name__ == "__main__":
@@ -242,8 +239,8 @@ if __name__ == "__main__":
 
     print(text)
     print("---")
-    print(tokens)
+    print(tokinizer.encode(text))
 
     print("---")
 
-    print(tokinizer.combine(tokens))
+    # print(tokinizer.combine(tokens))
