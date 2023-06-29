@@ -25,13 +25,13 @@ print(asdict(TrainConfig()))
 def train(corpus_dir, seed=0, use_wandb=True):
     set_seed(seed)
 
-    max_length = 1024
+    max_length = 64
     dataset = TokiPonaDataset(corpus_dir, max_length=max_length)
 
     model_config = GPTConfig(
         model_type="gpt",
-        n_layer=2,
-        n_head=4,
+        n_layer=1,
+        n_head=1,
         n_embd=128,
         vocab_size=dataset.tokenizer.vocab_size,
         block_size=max_length,
@@ -50,7 +50,7 @@ def train(corpus_dir, seed=0, use_wandb=True):
         num_workers=4,
         # optimizer parameters
         max_iters=None,
-        batch_size=512,
+        batch_size=64, #512
         learning_rate=3e-4,
         betas=(0.9, 0.95),
         weight_decay=0.1,  # only applied on matmul weights

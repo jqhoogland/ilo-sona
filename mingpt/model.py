@@ -260,12 +260,18 @@ class GPT(nn.Module):
         x = self.transformer.ln_f(x)
         logits = self.lm_head(x)
 
-        # if we are given some desired targets also calculate the loss
-        loss = None
-        if targets is not None:
-            loss = F.cross_entropy(
-                logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1
-            )
+        # target for a given token is the next token
+        targets = idx[:, 1:]
+
+        logits = logits[:, :-1, :]
+        logits = logits.reshape(-1, logits.size(-1))
+        targets = targets.reshape(-1)
+
+        # Define the loss function
+        loss_fn = nn.CrossEntropyLoss()
+
+        # Compute the loss
+        loss = loss_fn(logits, targets)
 
         return logits, loss
 

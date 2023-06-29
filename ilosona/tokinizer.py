@@ -197,7 +197,8 @@ class Tokinizer:
         )
 
     def encode_ids(self, text, truncation=False, return_tensors="pt"):
-        warnings.warn("Truncation is not supported", UserWarning)
+        if truncation:
+            warnings.warn("Truncation is not supported", UserWarning)
 
         tokens = self.split(text)
         input_ids = self.tokens_to_ids(tokens)
@@ -210,14 +211,12 @@ class Tokinizer:
     def encode(self, text, truncation=False, return_tensors="pt"):
         """Get a one-hot encoded array"""
         ids = self.encode_ids(text, truncation=truncation, return_tensors="np")
-        ids_1hot = np.zeros((ids.size, self.vocab_size + 1))
-        ids_1hot[np.arange(ids.size), ids] = 1
-
+        
         if return_tensors == "pt":
-            ids_1hot = torch.tensor(ids_1hot)
+            ids = torch.tensor(ids)
 
-        return ids_1hot
-
+        return ids
+    
     def combine(self, tokens):
         text = ""
 

@@ -93,10 +93,11 @@ class Trainer:
                 batch = next(data_iter)
                 
             batch = [t.to(self.device) for t in batch]
-            x, y = batch
 
+            batch = torch.stack(batch, dim=0)            
+            
             # forward the model
-            logits, self.loss = model(x, y)
+            logits, self.loss = model(batch)
 
             # backprop and update the parameters
             model.zero_grad(set_to_none=True)
