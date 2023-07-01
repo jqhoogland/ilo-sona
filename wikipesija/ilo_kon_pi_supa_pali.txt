@@ -1,0 +1,9 @@
+ilo kon pi supa pali li ilo kon ni: jan li wile kepeken e ilo sona la, ona li pona tawa ni.
+
+ilo kon ni li pali e ni: ona li pana e sitelen lili pi lipu ilo, e nena pi pali suli tawa ilo lipu. ona la, jan li ken open e ilo kon ante, li ken ante e nasin pi ilo kon, li ken pini e pali pi ilo sona.
+
+ilo kon lawa Winto (Windows) en ilo kon lawa Makinto (macOS) li jo e ilo kon wan pi supa pali.
+
+ilo kon lawa Linu (Linux) li ken jo e ilo kon mute pi supa pali. ona li ante lukin, li ante pali. taso, ona ale li ken open e ilo kon sama, li ken pali e ijo mute sama.
+
+ilo kon "GNOME" en ilo kon "Plasma" en ilo kon XFCE li ilo kon suli pi supa pali pi ilo Linu.

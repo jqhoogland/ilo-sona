@@ -1,0 +1,21 @@
+toki ilo Pason (toki Netelan: Python) li toki ilo. nimi ni li kama tan sitelen musi ni: kulupu sike pi tawa lon kon pi Monty Python.
+
+toki ilo la, ilo sona li toki e ni: "ma ale o, toki!"
+
+bg -
+ca -
+da -
+de -
+en -
+eo -
+es -
+fi -
+fr -
+it -
+ja -
+nl -
+pl -
+pt -
+ru -
+sv -
+zh -

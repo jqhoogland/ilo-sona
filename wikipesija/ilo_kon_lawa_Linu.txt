@@ -1,0 +1,3 @@
+ilo Linu (toki Inli: Linux) li ilo kon lawa pi ilo sona.  jan Linu Towa (toki Sensa: Linus Torvalds) li pana e ona lon tenpo sike 1991. ilo Linu li ilo kon pi len ala. kon pi nimi ni li ni: jan ale ken lukin e sitelen open ona pi toki ilo (source code). ona li pali tan ilo Juni tan nasin POSIX kepeken toki ilo Si (C). tenpo ni la ilo ni li namako kepeken toki ilo Wasi (Rust).
+
+ilo kon mute tan kulupu FSF (Free Software Foundation) en kulupu anu jan ante en ilo kon pi supa pali li namako e ilo kon lawa insa Linu.
