@@ -12,6 +12,7 @@ from torch.utils.data.dataloader import DataLoader
 
 from mingpt.utils import CfgNode as CN
 
+from tqdm import trange
 
 @dataclass
 class TrainConfig:
@@ -70,9 +71,7 @@ class Trainer:
         # setup the dataloader
         train_loader = DataLoader(
             self.train_dataset,
-            sampler=torch.utils.data.RandomSampler(
-                self.train_dataset, replacement=True, num_samples=int(1e10)
-            ),
+            sampler=torch.utils.data.RandomSampler(self.train_dataset),
             shuffle=False,
             pin_memory=True,
             batch_size=config.batch_size,
@@ -84,38 +83,34 @@ class Trainer:
         self.iter_time = time.time()
         data_iter = iter(train_loader)
 
-        while True:
+        # So I can sit and stare at the training run.
+        for e in trange(config.num_epochs):
+            for i in range(len(train_loader)):
             # fetch the next batch (x, y) and re-init iterator if needed
-            try:
-                batch = next(data_iter)
-            except StopIteration:
-                data_iter = iter(train_loader)
-                batch = next(data_iter)
+                try:
+                    batch = next(data_iter)
+                except StopIteration:
+                    data_iter = iter(train_loader)
+                    batch = next(data_iter) 
+                batch = [t.to(self.device) for t in batch]
+                batch = torch.stack(batch, dim=0)            
                 
-            batch = [t.to(self.device) for t in batch]
+                # forward the model
+                logits, self.loss = model(batch)
+                # backprop and update the parameters
+                model.zero_grad(set_to_none=True)
+                self.loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_norm_clip)
+                self.optimizer.step()
 
-            batch = torch.stack(batch, dim=0)            
-            
-            # forward the model
-            logits, self.loss = model(batch)
+                self.trigger_callbacks("on_batch_end")
+                self.iter_num += 1
 
-            # backprop and update the parameters
-            model.zero_grad(set_to_none=True)
-            self.loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), config.grad_norm_clip)
-            self.optimizer.step()
+                tnow = time.time()
+                self.iter_dt = tnow - self.iter_time
+                self.iter_time = tnow
 
-            self.trigger_callbacks("on_batch_end")
-            self.iter_num += 1
+                if config.max_iters is not None and self.iter_num >= config.max_iters: return
 
-            if self.iter_num % len(train_loader) == 0:
-                self.trigger_callbacks("on_epoch_end")
-                self.epoch_num += 1
-
-            tnow = time.time()
-            self.iter_dt = tnow - self.iter_time
-            self.iter_time = tnow
-
-            # termination conditions
-            if config.max_iters is not None and self.iter_num >= config.max_iters:
-                break
+            self.trigger_callbacks("on_epoch_end")
+            self.epoch_num += 1
